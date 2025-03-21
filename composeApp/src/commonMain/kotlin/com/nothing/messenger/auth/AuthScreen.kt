@@ -19,7 +19,6 @@ import androidx.compose.ui.text.style.TextAlign
 import com.nothing.auth.api.AuthComponent
 import com.nothing.auth.api.data.AuthUiModel
 import com.nothing.auth.api.data.AuthUiState
-import com.nothing.auth.internal.domain.model.User
 import com.nothing.messenger.widget.AppProgressBar
 
 @Composable
@@ -42,7 +41,7 @@ fun AuthScreen(
             when (val state = uiState) {
                 is AuthUiState.Loading -> AppProgressBar()
                 is AuthUiState.Data -> {
-                    AuthContent(state, state.authUiModel)
+                    AuthContent(state, state.authUiModel, component)
                 }
 
                 is AuthUiState.Empty -> AuthContent(state)
@@ -53,18 +52,22 @@ fun AuthScreen(
 }
 
 @Composable
-fun AuthContent(uiState: AuthUiState, authUiModel: AuthUiModel? = null) {
+fun AuthContent(uiState: AuthUiState, authUiModel: AuthUiModel? = null, component: AuthComponent? = null) {
     Column {
         Text(
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
-            text = "Welcome to Noting Messenger, ${authUiModel?.user?.name}"
+            text = "Welcome to Noting Messenger, ${authUiModel?.user?.name} !!!"
         )
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
-            Button(onClick = {}) {
+            Button(onClick = {
+                component?.onRegisterClicked()
+            }) {
                 Text("Register")
             }
-            Button(onClick = {}) {
+            Button(onClick = {
+                component?.onLoginClicked()
+            }) {
                 Text("Login")
             }
         }

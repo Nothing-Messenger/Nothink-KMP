@@ -11,15 +11,17 @@ import com.arkivanov.essenty.instancekeeper.getOrCreate
 import com.nothing.auth.api.AuthComponent
 import com.nothing.auth.api.DefaultAuthComponent
 import com.nothing.core_koin.ComponentKoinContext
-import com.nothing.messenger.DefaultMessengerComponent
-import com.nothing.messenger.MessengerComponent
+import com.nothing.messenger.api.DefaultMessengerComponent
+import com.nothing.messenger.api.MessengerComponent
 import com.nothing.root.api.Root.Child.Auth
 import com.nothing.root.api.Root.Child.Messenger
 import com.nothing.root.internal.di.dataModule
 import com.nothing.root.internal.di.rootModule
 import kotlinx.serialization.Serializable
+import org.koin.dsl.KoinAppDeclaration
 
-class RootComponent(componentContext: ComponentContext) : Root,
+class RootComponent(componentContext: ComponentContext, appDeclaration: KoinAppDeclaration = {}) :
+    Root,
     ComponentContext by componentContext {
 
     private val koinContext = instanceKeeper.getOrCreate {
@@ -27,7 +29,8 @@ class RootComponent(componentContext: ComponentContext) : Root,
     }
 
     private val scope = koinContext.getOrCreateKoinScope(
-        listOf(rootModule, dataModule)
+        listOf(rootModule, dataModule),
+        appDeclaration,
     )
 
     private val navigation = StackNavigation<Config>()
@@ -59,6 +62,7 @@ class RootComponent(componentContext: ComponentContext) : Root,
     ): MessengerComponent = DefaultMessengerComponent(
         componentContext = componentContext,
         onLogOutClicked = { navigation.pop() },
+        dependencies = scope.get()
     )
 
 

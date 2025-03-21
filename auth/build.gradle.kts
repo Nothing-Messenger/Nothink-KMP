@@ -66,6 +66,7 @@ kotlin {
 
                 implementation(projects.core)
                 implementation(projects.coreKoin)
+                implementation(projects.coreRoom)
             }
         }
 

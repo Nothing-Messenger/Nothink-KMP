@@ -7,8 +7,6 @@ import com.nothing.auth.internal.di.createAuthModules
 import com.nothing.auth.internal.presentation.AuthFeature
 import com.nothing.core.flow.AnyStateFlow
 import com.nothing.core_koin.ComponentKoinContext
-import org.koin.core.parameter.parametersOf
-import kotlin.text.get
 
 class DefaultAuthComponent(
     componentContext: ComponentContext,
@@ -17,6 +15,7 @@ class DefaultAuthComponent(
     dependencies: AuthDependencies,
 ) : AuthComponent,
     ComponentContext by componentContext {
+
     private val koinContext = instanceKeeper.getOrCreate {
         ComponentKoinContext()
     }
@@ -31,13 +30,13 @@ class DefaultAuthComponent(
 
     override val state: AnyStateFlow<AuthUiState> = feature.state
 
-    //override val state: AnyStateFlow<AuthUiState> =
     override fun onLoginClicked() {
-        onLoginClicked()
+        println("onLoginClicked")
+        onLoginClicked.invoke()
     }
 
     override fun onRegisterClicked() {
-        onRegisterClicked()
+        onRegisterClicked.invoke()
     }
 
 }

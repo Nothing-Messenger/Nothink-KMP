@@ -3,7 +3,7 @@ package com.nothing.root.api
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.value.Value
 import com.nothing.auth.api.AuthComponent
-import com.nothing.messenger.MessengerComponent
+import com.nothing.messenger.api.MessengerComponent
 
 interface Root {
 

@@ -60,7 +60,13 @@ kotlin {
             dependencies {
                 implementation(libs.kotlin.stdlib)
                 // Add KMP dependencies here
+                implementation(libs.koin.core)
                 implementation(libs.decompose)
+                implementation(libs.kotlinx.coroutines.core)
+
+                implementation(projects.core)
+                implementation(projects.coreKoin)
+                implementation(projects.coreRoom)
             }
         }
 

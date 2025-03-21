@@ -62,6 +62,9 @@ kotlin {
                 // Add KMP dependencies here
                 implementation(libs.koin.core)
                 implementation(libs.decompose)
+                implementation(libs.androidx.room.runtime)
+
+                implementation(projects.coreRoom)
             }
         }
 

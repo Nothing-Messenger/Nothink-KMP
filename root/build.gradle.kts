@@ -67,6 +67,7 @@ kotlin {
                 implementation(projects.auth)
                 implementation(projects.messenger)
                 implementation(projects.coreKoin)
+                implementation(projects.coreRoom)
             }
         }
 
