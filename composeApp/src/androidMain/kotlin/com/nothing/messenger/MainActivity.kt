@@ -12,7 +12,8 @@ import androidx.core.view.WindowCompat
 import com.arkivanov.decompose.defaultComponentContext
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
 import com.nothing.messenger.auth.AuthScreen
-import com.nothing.messenger.messenger.MessengerScreen
+import com.nothing.messenger.communities.CommunityScreen
+import com.nothing.messenger.nothingMain.NothingMainScreen
 import com.nothing.root.api.Root
 import com.nothing.root.api.RootComponent
 import org.koin.android.ext.koin.androidContext
@@ -42,6 +43,7 @@ internal fun RootScreen(
 
     when (val active = childStack.active.instance) {
         is Root.Child.Auth -> AuthScreen(component = active.component)
-        is Root.Child.Messenger -> MessengerScreen(component = active.component)
+        is Root.Child.NothingMain -> NothingMainScreen(component = active.component)
+        is Root.Child.Chat -> CommunityScreen(component = active.component)
     }
 }

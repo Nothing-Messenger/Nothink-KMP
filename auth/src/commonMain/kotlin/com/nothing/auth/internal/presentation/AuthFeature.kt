@@ -1,7 +1,7 @@
 package com.nothing.auth.internal.presentation
 
 import com.nothing.auth.api.data.AuthUiState
-import com.nothing.auth.api.data.CredentialUiModel
+import com.nothing.auth.api.data.SignInUiModel
 import com.nothing.core.feature.CoroutineFeature
 import com.nothing.core.flow.AnyStateFlow
 import com.nothing.core.flow.wrapToAny
@@ -33,7 +33,7 @@ internal class AuthFeature(
             /*if (userDao.getById(1) == null) {
                 userDao.insert(UserEntity(id = 1, name = "Nikita", surname = "", age = 0, email = null))
             }*/
-            _state.value = AuthUiState.SignIn(CredentialUiModel("", ""))
+            _state.value = AuthUiState.SignIn(SignInUiModel("", ""))
         }
     }
 

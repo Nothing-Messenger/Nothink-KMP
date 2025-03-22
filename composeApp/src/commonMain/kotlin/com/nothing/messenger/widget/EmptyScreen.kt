@@ -12,14 +12,13 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.Warning
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun EmptyScreen() {
+fun EmptyScreen(text: String = "Empty") {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -37,7 +36,7 @@ fun EmptyScreen() {
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "Empty",
+                text = text,
                 style = MaterialTheme.typography.h6,
                 color = MaterialTheme.colors.primary
             )

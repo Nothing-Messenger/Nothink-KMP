@@ -3,7 +3,8 @@ package com.nothing.auth.api
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.essenty.instancekeeper.getOrCreate
 import com.nothing.auth.api.data.AuthUiState
-import com.nothing.auth.api.data.CredentialUiModel
+import com.nothing.auth.api.data.SignInUiModel
+import com.nothing.auth.api.data.SignUpUiModel
 import com.nothing.auth.internal.di.createAuthModules
 import com.nothing.auth.internal.presentation.AuthFeature
 import com.nothing.core.flow.AnyStateFlow
@@ -35,12 +36,12 @@ class DefaultAuthComponent(
         feature.updateState { currentState ->
             when (currentState) {
                 is AuthUiState.SignIn -> currentState.copy(
-                    credentialUiModel = currentState.credentialUiModel.copy(login = login)
+                    signInUiModel = currentState.signInUiModel.copy(login = login)
                 )
                 is AuthUiState.SignUp -> currentState.copy(
-                    credentialUiModel = currentState.credentialUiModel.copy(login = login)
+                    signUpUiModel = currentState.signUpUiModel.copy(login = login)
                 )
-                else -> AuthUiState.SignIn(CredentialUiModel(login = login, password = ""))
+                else -> AuthUiState.SignIn(SignInUiModel(login = login, password = ""))
             }
         }
     }
@@ -49,12 +50,23 @@ class DefaultAuthComponent(
         feature.updateState { currentState ->
             when (currentState) {
                 is AuthUiState.SignIn -> currentState.copy(
-                    credentialUiModel = currentState.credentialUiModel.copy(password = password)
+                    signInUiModel = currentState.signInUiModel.copy(password = password)
                 )
                 is AuthUiState.SignUp -> currentState.copy(
-                    credentialUiModel = currentState.credentialUiModel.copy(password = password)
+                    signUpUiModel = currentState.signUpUiModel.copy(password = password)
                 )
-                else -> AuthUiState.SignIn(CredentialUiModel(login = "", password = password))
+                else -> AuthUiState.SignIn(SignInUiModel(login = "", password = password))
+            }
+        }
+    }
+
+    override fun onPasswordRepeatChanged(password: String) {
+        feature.updateState { currentState ->
+            when (currentState) {
+                is AuthUiState.SignUp -> currentState.copy(
+                    signUpUiModel = currentState.signUpUiModel.copy(passwordRepeat = password)
+                )
+                else -> AuthUiState.SignIn(SignInUiModel(login = "", password = password))
             }
         }
     }
@@ -72,11 +84,11 @@ class DefaultAuthComponent(
     }
 
     override fun showSignIn() {
-        feature.updateState { AuthUiState.SignIn(CredentialUiModel(login = "", password = "")) }
+        feature.updateState { AuthUiState.SignIn(SignInUiModel(login = "", password = "")) }
     }
 
     override fun showSignUp() {
-        feature.updateState { AuthUiState.SignUp(CredentialUiModel(login = "", password = "")) }
+        feature.updateState { AuthUiState.SignUp(SignUpUiModel(login = "", password = "", passwordRepeat = "")) }
     }
 
 }

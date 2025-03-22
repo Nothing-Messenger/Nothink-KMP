@@ -30,8 +30,11 @@ dependencyResolutionManagement {
 
 include(":composeApp")
 include(":auth")
-include(":messenger")
+include(":community")
 include(":root")
 include(":core")
 include(":core-koin")
 include(":core-room")
+include(":nothing-main")
+include(":settings")
+include(":contacts")

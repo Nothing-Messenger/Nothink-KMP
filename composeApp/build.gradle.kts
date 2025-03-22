@@ -48,11 +48,16 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.koin.android)
             api(libs.decompose)
+            implementation("com.arkivanov.decompose:extensions-compose:3.0.0")
+            implementation(compose.material3)
 
             implementation(projects.core)
             implementation(projects.root)
             implementation(projects.auth)
-            implementation(projects.messenger)
+            implementation(projects.nothingMain)
+            implementation(projects.contacts)
+            implementation(projects.community)
+            implementation(projects.settings)
         }
     }
 }

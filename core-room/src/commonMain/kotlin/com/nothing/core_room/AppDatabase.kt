@@ -1,6 +1,5 @@
 package com.nothing.core_room
 
-import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import org.koin.core.module.Module
@@ -10,9 +9,9 @@ expect val databaseModule: Module
 
 @Database(
     entities = [UserEntity::class],
-    version = 2,
+    version = 1,
     autoMigrations = [
-        AutoMigration(from = 1, to = 2),
+        //AutoMigration(from = 1, to = 2),
     ]
 )
 abstract class AppDatabase : RoomDatabase() {

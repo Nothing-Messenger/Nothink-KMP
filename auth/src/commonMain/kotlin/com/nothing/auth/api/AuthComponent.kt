@@ -8,6 +8,7 @@ interface AuthComponent {
 
     fun onLoginChanged(login: String)
     fun onPasswordChanged(password: String)
+    fun onPasswordRepeatChanged(password: String)
 
     fun onLoginClicked()
     fun onRegisterClicked()

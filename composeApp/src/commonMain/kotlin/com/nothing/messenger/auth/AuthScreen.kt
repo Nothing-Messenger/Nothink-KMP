@@ -10,18 +10,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
-import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.nothing.auth.api.AuthComponent
 import com.nothing.auth.api.data.AuthUiState
@@ -72,7 +69,7 @@ fun SignInScreen(component: AuthComponent, loginState: AuthUiState.SignIn) {
         )
 
         AppTextField(
-            value = loginState.credentialUiModel.login,
+            value = loginState.signInUiModel.login,
             onValueChange = { component.onLoginChanged(it) },
             label = "Login",
             modifier = Modifier
@@ -81,7 +78,7 @@ fun SignInScreen(component: AuthComponent, loginState: AuthUiState.SignIn) {
         )
 
         AppTextField(
-            value = loginState.credentialUiModel.password,
+            value = loginState.signInUiModel.password,
             onValueChange = { component.onPasswordChanged(it) },
             label = "Password",
             isPassword = true,
@@ -145,33 +142,33 @@ fun SignUpScreen(component: AuthComponent, loginState: AuthUiState.SignUp) {
             modifier = Modifier.padding(bottom = 32.dp)
         )
 
-        OutlinedTextField(
-            value = loginState.credentialUiModel.login,
+        AppTextField(
+            value = loginState.signUpUiModel.login,
             onValueChange = { component.onLoginChanged(it) },
-            label = { Text("Login") },
+            label = "Login",
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 0.dp),
+        )
+
+        AppTextField(
+            value = loginState.signUpUiModel.password,
+            onValueChange = { component.onPasswordChanged(it) },
+            label = "Password",
+            isPassword = true,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 0.dp),
+        )
+
+        AppTextField(
+            value = loginState.signUpUiModel.passwordRepeat,
+            onValueChange = { component.onPasswordChanged(it) },
+            label = "Password",
+            isPassword = true,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 16.dp),
-            shape = MaterialTheme.shapes.medium,
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = MaterialTheme.colors.primary,
-                unfocusedBorderColor = Color.Gray
-            ),
-        )
-
-        OutlinedTextField(
-            value = loginState.credentialUiModel.password,
-            onValueChange = { component.onPasswordChanged(it) },
-            label = { Text("Password") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 24.dp),
-            shape = MaterialTheme.shapes.medium,
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = MaterialTheme.colors.primary,
-                unfocusedBorderColor = Color.Gray
-            ),
-            visualTransformation = PasswordVisualTransformation()
         )
 
         Button(

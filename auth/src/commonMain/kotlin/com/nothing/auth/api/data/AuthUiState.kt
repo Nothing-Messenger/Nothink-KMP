@@ -8,8 +8,8 @@ sealed class AuthUiState {
 
     //data class Data(val authUiModel: AuthUiModel) : AuthUiState()
 
-    data class SignIn(val credentialUiModel: CredentialUiModel) : AuthUiState()
-    data class SignUp(val credentialUiModel: CredentialUiModel) : AuthUiState()
+    data class SignIn(val signInUiModel: SignInUiModel) : AuthUiState()
+    data class SignUp(val signUpUiModel: SignUpUiModel) : AuthUiState()
 
     object ForgotPassword : AuthUiState()
 }
