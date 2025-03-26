@@ -46,9 +46,9 @@ class DefaultNothingMainComponent(
     private fun createBottomChild(
         config: BottomConfig, componentContext: ComponentContext
     ): NothingMainComponent.BottomChild = when (config) {
-        is BottomConfig.Contacts -> NothingMainComponent.BottomChild.Contacts(contacts(componentContext))
-        is BottomConfig.Community -> NothingMainComponent.BottomChild.Community(community(componentContext))
-        is BottomConfig.Settings -> NothingMainComponent.BottomChild.Settings(settings(componentContext))
+        is BottomConfig.Contacts -> NothingMainComponent.BottomChild.ContactsChild(contacts(componentContext))
+        is BottomConfig.Community -> NothingMainComponent.BottomChild.CommunityChild(community(componentContext))
+        is BottomConfig.Settings -> NothingMainComponent.BottomChild.SettingsChild(settings(componentContext))
     }
 
     private fun contacts(

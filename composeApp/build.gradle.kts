@@ -1,3 +1,4 @@
+import org.gradle.kotlin.dsl.implementation
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -50,6 +51,10 @@ kotlin {
             api(libs.decompose)
             implementation("com.arkivanov.decompose:extensions-compose:3.0.0")
             implementation(compose.material3)
+
+            implementation(libs.swipebox.kmp)
+            implementation(libs.haze)
+            implementation(libs.haze.materials)
 
             implementation(projects.core)
             implementation(projects.root)

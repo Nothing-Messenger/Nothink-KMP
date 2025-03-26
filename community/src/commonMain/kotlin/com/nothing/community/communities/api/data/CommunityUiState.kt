@@ -4,5 +4,5 @@ sealed class CommunityUiState {
     object Loading : CommunityUiState()
     object Error : CommunityUiState()
     object Empty : CommunityUiState()
-    object Data : CommunityUiState()
+    data class Data(val communities: List<CommunityModel>) : CommunityUiState()
 }

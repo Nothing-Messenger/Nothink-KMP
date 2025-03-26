@@ -39,7 +39,7 @@ class RootComponent(componentContext: ComponentContext, appDeclaration: KoinAppD
     override val childStack: Value<ChildStack<*, Root.Child>> = childStack(
         source = navigation,
         serializer = Config.serializer(), // Or null to disable navigation state saving
-        initialConfiguration = Config.Auth,
+        initialConfiguration = Config.NothingApp,
         handleBackButton = true, // Pop the back stack on back button press
         childFactory = ::createChild,
     )

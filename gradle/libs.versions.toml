@@ -1,6 +1,6 @@
 [versions]
 agp = "8.9.0"
-android-compileSdk = "34"
+android-compileSdk = "35"
 android-minSdk = "24"
 android-targetSdk = "34"
 androidx-activityCompose = "1.9.3"
@@ -27,6 +27,9 @@ ksp = "2.1.0-1.0.29"
 
 sqlite = "2.5.0-alpha01"
 androidx-room = "2.7.0-alpha12"
+
+swipebox-kmp = "1.2.0"
+haze = "1.5.2"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -61,6 +64,11 @@ androidx-room-gradle-plugin = { group = "androidx.room", name = "room-gradle-plu
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidx-room" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidx-room" }
 androidx-room-paging = { group = "androidx.room", name = "room-paging", version.ref = "androidx-room" }
+
+swipebox-kmp = { group = "io.github.kevinnzou", name = "compose-swipebox-multiplatform", version.ref = "swipebox-kmp" }
+
+haze = { group = "dev.chrisbanes.haze", name = "haze", version.ref = "haze" }
+haze-materials = { group = "dev.chrisbanes.haze", name = "haze-materials", version.ref = "haze" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

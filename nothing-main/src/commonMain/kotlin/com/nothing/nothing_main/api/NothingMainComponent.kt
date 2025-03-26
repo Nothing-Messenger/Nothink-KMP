@@ -15,9 +15,9 @@ interface NothingMainComponent {
     fun openSettings()
 
     sealed class BottomChild {
-        class Contacts(val component: ContactsComponent) : BottomChild()
-        class Community(val component: CommunityComponent) : BottomChild()
-        class Settings(val component: SettingsComponent) : BottomChild()
+        class ContactsChild(val component: ContactsComponent) : BottomChild()
+        class CommunityChild(val component: CommunityComponent) : BottomChild()
+        class SettingsChild(val component: SettingsComponent) : BottomChild()
     }
 
 }
