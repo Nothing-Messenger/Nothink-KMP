@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.Scaffold
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -46,11 +47,12 @@ fun CommunitiesScreen(
     val scrollState = rememberScrollState()
 
     val hazeState = remember { HazeState() }
-    val topBarHeight = 70.dp
+    val topBarHeight = 60.dp
     val bottomBarHeight = 60.dp
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
+        backgroundColor = MaterialTheme.colorScheme.background
     ) {
         Box(
             modifier = Modifier.fillMaxSize(),
@@ -62,7 +64,7 @@ fun CommunitiesScreen(
                     .fillMaxWidth()
                     .background(Color.Transparent)
                     .align(Alignment.TopCenter)
-                    .hazeEffect(state = hazeState, style = HazeMaterials.ultraThin())
+                    .hazeEffect(state = hazeState, style = HazeMaterials.regular())
                     .zIndex(2f)
             ) {
                 AppTopAppBar(title = "Chats", topBarHeight = topBarHeight)
@@ -92,7 +94,7 @@ fun CommunitiesScreen(
                     .fillMaxWidth()
                     .background(Color.Transparent)
                     .align(Alignment.BottomCenter)
-                    .hazeEffect(state = hazeState, style = HazeMaterials.ultraThin())
+                    .hazeEffect(state = hazeState, style = HazeMaterials.regular())
                     .zIndex(2f)
             )
         }

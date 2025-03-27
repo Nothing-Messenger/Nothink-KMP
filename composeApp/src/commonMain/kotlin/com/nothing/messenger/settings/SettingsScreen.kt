@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -20,14 +21,16 @@ fun SettingsScreen(
 ) {
     val chatUiState by component.state.collectAsState()
 
-    Scaffold {
+    Scaffold(
+        backgroundColor = MaterialTheme.colorScheme.background
+    ) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(it),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
-            Text(text = "Settings")
+            Text(text = "Settings", color = MaterialTheme.colorScheme.onBackground)
         }
     }
 }

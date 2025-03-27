@@ -4,11 +4,11 @@ import android.app.Application
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
-import androidx.core.view.WindowCompat
 import com.arkivanov.decompose.defaultComponentContext
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
 import com.nothing.messenger.auth.AuthScreen
@@ -24,11 +24,20 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+        enableEdgeToEdge()
+        //WindowCompat.setDecorFitsSystemWindows(window, false)
 
         val root = RootComponent(defaultComponentContext(), { androidContext(this@MainActivity) })
         setContent {
-            RootScreen(root)
+            App(
+                context = this,
+                dynamicColor = false, //
+                darkTheme = isSystemInDarkTheme(),
+                content = {
+                    RootScreen(root)
+                }
+            )
+            //RootScreen(root)
         }
     }
 }
@@ -36,8 +45,7 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 internal fun RootScreen(
-    root: Root,
-    modifier: Modifier = Modifier
+    root: Root
 ) {
     val childStack by root.childStack.subscribeAsState()
 

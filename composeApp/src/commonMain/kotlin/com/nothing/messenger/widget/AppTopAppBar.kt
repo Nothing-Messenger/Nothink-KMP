@@ -8,9 +8,9 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.nothing.core.utils.isAndroid
@@ -22,17 +22,17 @@ internal fun AppTopAppBar(
     topBarHeight: Dp = 70.dp,
     onCloseClick: (() -> Unit)? = null,
 ) {
+    val backgroundColor = MaterialTheme.colorScheme.surface
+
     TopAppBar(
-        title = { Text(text = title) },
-        modifier = Modifier.background(
-            if (isAndroid()) {
-                if (isAndroid31OrHigher()) Color.White.copy(alpha = 0.7f)
-                else Color.White
-            } else {
-                Color.White.copy(alpha = 0.7f)
-            }
-        ).height(topBarHeight),
-        backgroundColor = Color.Transparent,
+        title = { Text(text = title, color = MaterialTheme.colorScheme.onSurface) },
+        modifier = Modifier.height(topBarHeight),
+        backgroundColor = if (isAndroid()) {
+            if (isAndroid31OrHigher()) backgroundColor.copy(alpha = 0.7f)
+            else backgroundColor
+        } else {
+            backgroundColor.copy(alpha = 0.7f)
+        },
         navigationIcon = onCloseClick?.let { listener ->
             {
                 IconButton(onClick = listener) {

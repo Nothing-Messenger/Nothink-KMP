@@ -35,7 +35,7 @@ class CommunitiesFeature() : CoroutineFeature() {
                 )
             }
 
-            delay(2000)
+            delay(1500)
             _state.value = CommunityUiState.Data(communities.value)
         }
     }

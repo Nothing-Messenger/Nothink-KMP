@@ -7,10 +7,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Call
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.rounded.Call
+import androidx.compose.material.icons.rounded.Home
+import androidx.compose.material.icons.rounded.Settings
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -32,15 +34,20 @@ internal fun AppBottomAppBar(
     val stack by component.bottomChildStack.subscribeAsState()
     val activeComponent = stack.active.instance
 
+    val backgroundColor = MaterialTheme.colorScheme.surface
+
+    val selectedContentColor = MaterialTheme.colorScheme.primary
+    val unselectedContentColor = MaterialTheme.colorScheme.onSurface
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .background(
                 if (isAndroid()) {
-                    if (isAndroid31OrHigher()) Color.White.copy(alpha = 0.7f)
-                    else Color.White
+                    if (isAndroid31OrHigher()) backgroundColor.copy(alpha = 0.7f)
+                    else backgroundColor
                 } else {
-                    Color.White.copy(alpha = 0.7f)
+                    backgroundColor.copy(alpha = 0.7f)
                 }
             )
     ) {
@@ -54,11 +61,14 @@ internal fun AppBottomAppBar(
             BottomNavigationItem(
                 selected = activeComponent is ContactsChild,
                 onClick = component::openContacts,
-                selectedContentColor = Color.DarkGray,
-                unselectedContentColor = Color.Gray,
+                selectedContentColor = selectedContentColor,
+                unselectedContentColor = unselectedContentColor,
+                label = {
+                    Text("Contacts")
+                },
                 icon = {
                     Icon(
-                        imageVector = Icons.Default.Call,
+                        imageVector = Icons.Rounded.Call,
                         contentDescription = "Contacts",
                     )
                 },
@@ -66,11 +76,14 @@ internal fun AppBottomAppBar(
             BottomNavigationItem(
                 selected = activeComponent is CommunityChild,
                 onClick = component::openCommunity,
-                selectedContentColor = Color.DarkGray,
-                unselectedContentColor = Color.Gray,
+                selectedContentColor = selectedContentColor,
+                unselectedContentColor = unselectedContentColor,
+                label = {
+                    Text("Chat")
+                },
                 icon = {
                     Icon(
-                        imageVector = Icons.Default.Home,
+                        imageVector = Icons.Rounded.Home,
                         contentDescription = "Communities",
                     )
                 },
@@ -78,11 +91,14 @@ internal fun AppBottomAppBar(
             BottomNavigationItem(
                 selected = activeComponent is SettingsChild,
                 onClick = component::openSettings,
-                selectedContentColor = Color.DarkGray,
-                unselectedContentColor = Color.Gray,
+                selectedContentColor = selectedContentColor,
+                unselectedContentColor = unselectedContentColor,
+                label = {
+                    Text("Settings")
+                },
                 icon = {
                     Icon(
-                        imageVector = Icons.Filled.Settings,
+                        imageVector = Icons.Rounded.Settings,
                         contentDescription = "Settings",
                     )
                 },
